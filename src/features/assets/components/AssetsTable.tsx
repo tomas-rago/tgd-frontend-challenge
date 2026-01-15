@@ -54,7 +54,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
     return (
       <>
-        {/* Main Row */}
         <StyledTableRow>
           <StyledTableCell>
             <IconButton
@@ -85,169 +84,167 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
                 </Box>
           </StyledTableCell>
         </StyledTableRow>
-
-        {/* Collapsible Row */}
         <TableRow>
           <StyledTableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-    <Box  sx={{
-      maxWidth: '100%',
-      overflow: 'auto' 
-    }}>
-      <Typography variant="h6" gutterBottom component="div">
-        Equipment Details
-      </Typography>
-      <Grid container spacing={2}>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Plant Tag
-          </Typography>
-          <Typography variant="body1">{asset.plantTag}</Typography>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Tag TGD
-          </Typography>
-          <Typography variant="body1">{asset.tagTGD}</Typography>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Tag FP
-          </Typography>
-          <Typography variant="body1">{asset.tagFP}</Typography>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Brand
-          </Typography>
-          <Typography variant="body1">{asset.brand}</Typography>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Model
-          </Typography>
-          <Typography variant="body1">{asset.model}</Typography>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Type
-          </Typography>
-          <Typography variant="body1">{asset.type}</Typography>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Function
-          </Typography>
-          <Typography variant="body1">{asset.function}</Typography>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Criticality
-          </Typography>
-          <Typography variant="body1">{asset.criticality}</Typography>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Routes
-          </Typography>
-          <Typography variant="body1">{asset.routes}</Typography>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Supplies
-          </Typography>
-          <Typography variant="body1">{asset.supplies}</Typography>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Element
-          </Typography>
-          <Typography variant="body1">{asset.element}</Typography>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Component
-          </Typography>
-          <Typography variant="body1">{asset.component}</Typography>
-        </Grid>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <Box  sx={{
+                maxWidth: '100%',
+                overflow: 'auto' 
+              }}>
+                <Typography variant="h6" gutterBottom component="div">
+                  Equipment Details
+                </Typography>
+                <Grid container spacing={2}>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Plant Tag
+                    </Typography>
+                    <Typography variant="body1">{asset.plantTag}</Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Tag TGD
+                    </Typography>
+                    <Typography variant="body1">{asset.tagTGD}</Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Tag FP
+                    </Typography>
+                    <Typography variant="body1">{asset.tagFP}</Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Brand
+                    </Typography>
+                    <Typography variant="body1">{asset.brand}</Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Model
+                    </Typography>
+                    <Typography variant="body1">{asset.model}</Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Type
+                    </Typography>
+                    <Typography variant="body1">{asset.type}</Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Function
+                    </Typography>
+                    <Typography variant="body1">{asset.function}</Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Criticality
+                    </Typography>
+                    <Typography variant="body1">{asset.criticality}</Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Routes
+                    </Typography>
+                    <Typography variant="body1">{asset.routes}</Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Supplies
+                    </Typography>
+                    <Typography variant="body1">{asset.supplies}</Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Element
+                    </Typography>
+                    <Typography variant="body1">{asset.element}</Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Component
+                    </Typography>
+                    <Typography variant="body1">{asset.component}</Typography>
+                  </Grid>
 
-        <Grid size={{ xs: 12 }}>
-          <Divider sx={{ my: 1 }} />
-          <Typography variant="subtitle2" gutterBottom>
-            Lubrication Information
-          </Typography>
-        </Grid>
+                  <Grid size={{ xs: 12 }}>
+                    <Divider sx={{ my: 1 }} />
+                    <Typography variant="subtitle2" gutterBottom>
+                      Lubrication Information
+                    </Typography>
+                  </Grid>
 
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Lubricant Type
-          </Typography>
-          <Typography variant="body1">{asset.lubricantType}</Typography>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Lubricant
-          </Typography>
-          <Typography variant="body1">{asset.lubricant}</Typography>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Capacity
-          </Typography>
-          <Typography variant="body1">
-            {asset.capacity} {asset.measureUnit}
-          </Typography>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Oil Analysis
-          </Typography>
-          <Typography variant="body1">
-            {asset.oilAnalysis ? 'Yes' : 'No'}
-          </Typography>
-        </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Lubricant Type
+                    </Typography>
+                    <Typography variant="body1">{asset.lubricantType}</Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Lubricant
+                    </Typography>
+                    <Typography variant="body1">{asset.lubricant}</Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Capacity
+                    </Typography>
+                    <Typography variant="body1">
+                      {asset.capacity} {asset.measureUnit}
+                    </Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Oil Analysis
+                    </Typography>
+                    <Typography variant="body1">
+                      {asset.oilAnalysis ? 'Yes' : 'No'}
+                    </Typography>
+                  </Grid>
 
-        <Grid size={{ xs: 12 }}>
-          <Divider sx={{ my: 1 }} />
-          <Typography variant="subtitle2" gutterBottom>
-            Dates & Status
-          </Typography>
-        </Grid>
+                  <Grid size={{ xs: 12 }}>
+                    <Divider sx={{ my: 1 }} />
+                    <Typography variant="subtitle2" gutterBottom>
+                      Dates & Status
+                    </Typography>
+                  </Grid>
 
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Admission Date
-          </Typography>
-          <Typography variant="body1">
-            {new Date(asset.admissionDate).toLocaleDateString()}
-          </Typography>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Egress Date
-          </Typography>
-          <Typography variant="body1">
-            {asset.egressDate ? new Date(asset.egressDate).toLocaleDateString() : 'N/A'}
-          </Typography>
-        </Grid>
-        <Grid size={{ xs: 12, sm: 6, md: 4 }}>
-          <Typography variant="body2" color="text.secondary">
-            Review
-          </Typography>
-          <Typography variant="body1">{asset.review}</Typography>
-        </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Admission Date
+                    </Typography>
+                    <Typography variant="body1">
+                      {new Date(asset.admissionDate).toLocaleDateString()}
+                    </Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Egress Date
+                    </Typography>
+                    <Typography variant="body1">
+                      {asset.egressDate ? new Date(asset.egressDate).toLocaleDateString() : 'N/A'}
+                    </Typography>
+                  </Grid>
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      Review
+                    </Typography>
+                    <Typography variant="body1">{asset.review}</Typography>
+                  </Grid>
 
-        {asset.observations && (
-          <Grid size={{ xs: 12 }}>
-            <Typography variant="body2" color="text.secondary">
-              Observations
-            </Typography>
-            <Typography variant="body1">{asset.observations}</Typography>
-          </Grid>
-        )}
-      </Grid>
-    </Box>
-  </Collapse>
+                  {asset.observations && (
+                    <Grid size={{ xs: 12 }}>
+                      <Typography variant="body2" color="text.secondary">
+                        Observations
+                      </Typography>
+                      <Typography variant="body1">{asset.observations}</Typography>
+                    </Grid>
+                  )}
+                </Grid>
+              </Box>
+            </Collapse>
           </StyledTableCell>
         </TableRow>
       </>
