@@ -1,4 +1,5 @@
 import { useAssetsData } from "@/features/assets";
+import { useState } from "react";
 import {
   Box,
   Button,
@@ -13,7 +14,7 @@ import {
   TableRow,
   CircularProgress,
   Alert,
-  Chip
+  TablePagination,
 } from "@mui/material";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -37,6 +38,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const AssetsTable = () => {
   const { data, isLoading, error, refetch } = useAssetsData();
+
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+
 
   // TODO: Handle loading state
 
@@ -62,6 +68,20 @@ const AssetsTable = () => {
     // Use updateAsset service
   };
 
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0); // Reset to first page when changing rows per page
+  };
+
+  const paginatedData = data.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage
+  );
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="assets table">
@@ -81,7 +101,7 @@ const AssetsTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((row) => (
+          {paginatedData.map((row) => (
             <StyledTableRow key={row.id}>
               <StyledTableCell>{row.labelId}</StyledTableCell>
               <StyledTableCell>{row.component}</StyledTableCell>
@@ -108,6 +128,15 @@ const AssetsTable = () => {
           {/* Example row, remove it after implementation */}
         </TableBody>
       </Table>
+      <TablePagination
+          rowsPerPageOptions={[5, 10, 25, 50]}
+          component="div"
+          count={data.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
     </TableContainer>
   );
 };
