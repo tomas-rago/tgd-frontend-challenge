@@ -46,7 +46,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
   interface RowProps {
     asset: Asset;
-    onUpdate: (asset: Asset) => void;
+    onUpdate: (id: number, asset: Asset) => void;
   }
 
   const Row = ({ asset, onUpdate }: RowProps) => {
@@ -92,7 +92,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
           <Collapse in={open} timeout="auto" unmountOnExit>
     <Box  sx={{
       maxWidth: '100%',
-      overflow: 'auto' // Allow horizontal scroll if content is too wide
+      overflow: 'auto' 
     }}>
       <Typography variant="h6" gutterBottom component="div">
         Equipment Details
@@ -264,7 +264,6 @@ const AssetsTable = () => {
 
 
 
-  // TODO: Handle loading state
 
   if (isLoading) {
     return (
@@ -273,7 +272,6 @@ const AssetsTable = () => {
       </Box>
     );
   }
-  // TODO: Handle error state
 
   if (error) {
     return (
@@ -294,7 +292,7 @@ const AssetsTable = () => {
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0); // Reset to first page when changing rows per page
+    setPage(0); 
   };
 
   const paginatedData = data.slice(
@@ -320,7 +318,6 @@ const AssetsTable = () => {
           {paginatedData.map((row) => (
             <Row key={row.id} asset ={row} onUpdate={handleUpdate} />
           ))}
-          {/* Example row, remove it after implementation */}
         </TableBody>
       </Table>
       <TablePagination

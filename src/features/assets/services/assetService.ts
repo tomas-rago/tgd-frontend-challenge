@@ -2,9 +2,6 @@ import { axiosInstance } from "@/shared/libs/axios";
 import type { Asset, UpdateAssetDto } from "../types/assetTypes";
 
 export const getAssets = async (): Promise<Asset[]> => {
-  // TODO: Implement GET request to fetch assets
-  // Example endpoint: /api/assets
-  // Use axiosInstance.get()
   const response = await axiosInstance.get<Asset[]>("/equipment");
   return response.data;
 
