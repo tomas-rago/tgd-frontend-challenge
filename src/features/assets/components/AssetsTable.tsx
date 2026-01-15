@@ -11,6 +11,9 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  CircularProgress,
+  Alert,
+  Chip
 } from "@mui/material";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -33,10 +36,26 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const AssetsTable = () => {
-  const { data, isLoading, error } = useAssetsData();
+  const { data, isLoading, error, refetch } = useAssetsData();
 
   // TODO: Handle loading state
+
+  if (isLoading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
   // TODO: Handle error state
+
+  if (error) {
+    return (
+      <Alert severity="error" sx={{ m: 2 }}>
+        Error loading equipment: {error.message}
+      </Alert>
+    );
+  }
 
   // TODO: Implement handleUpdate function for PUT request
   const handleUpdate = async (id: string, asset: any) => {
@@ -48,8 +67,15 @@ const AssetsTable = () => {
       <Table sx={{ minWidth: 650 }} aria-label="assets table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>ID</StyledTableCell>
-            <StyledTableCell>Name</StyledTableCell>
+            <StyledTableCell>Label ID</StyledTableCell>
+            <StyledTableCell>Component</StyledTableCell>
+            <StyledTableCell>Equipment</StyledTableCell>
+            <StyledTableCell>Type</StyledTableCell>
+            <StyledTableCell>Sector</StyledTableCell>
+            <StyledTableCell>Location</StyledTableCell>
+            <StyledTableCell>State</StyledTableCell>
+            <StyledTableCell>Lubricant</StyledTableCell>
+            <StyledTableCell>Lubricant Type</StyledTableCell>
             {/* Add more columns as needed */}
             <StyledTableCell align="right">Actions</StyledTableCell>
           </TableRow>
@@ -57,33 +83,35 @@ const AssetsTable = () => {
         <TableBody>
           {data.map((row) => (
             <StyledTableRow key={row.id}>
-              <StyledTableCell component="th" scope="row">
-                {row.id}
+              <StyledTableCell>{row.labelId}</StyledTableCell>
+              <StyledTableCell>{row.component}</StyledTableCell>
+              <StyledTableCell>{row.equipment}</StyledTableCell>
+              <StyledTableCell>{row.type}</StyledTableCell>
+              <StyledTableCell>{row.sector}</StyledTableCell>
+              <StyledTableCell>{row.location}</StyledTableCell>
+              <StyledTableCell>
+                <Chip
+                  label={row.state ? 'Active' : 'Inactive'}
+                  color={row.state ? 'success' : 'default'}
+                  size="small"
+              />
               </StyledTableCell>
-              <StyledTableCell>{row.name}</StyledTableCell>
+              <StyledTableCell>{row.lubricant}</StyledTableCell>
+              <StyledTableCell>{row.lubricantType}</StyledTableCell>
+            
               {/* Add more cells as needed */}
               <StyledTableCell align="right">
                 <Box sx={{ display: "flex", gap: 1, justifyContent: "flex-end" }}>
                   {/* TODO: Add button for PUT action */}
+                  <Button variant="outlined" onClick={() => handleUpdate(row.id.toString(), row)}>
+                    Update
+                  </Button>
                   {/* Example: */}
                 </Box>
               </StyledTableCell>
             </StyledTableRow>
           ))}
           {/* Example row, remove it after implementation */}
-          <StyledTableRow>
-            <StyledTableCell component="th" scope="row">
-              1
-            </StyledTableCell>
-            <StyledTableCell>Asset 1</StyledTableCell>
-            <StyledTableCell align="right">
-              <Box sx={{ display: "flex", gap: 1, justifyContent: "flex-end" }}>
-                <Button variant="outlined">
-                  Update
-                </Button>
-              </Box>
-            </StyledTableCell>
-          </StyledTableRow>
         </TableBody>
       </Table>
     </TableContainer>
