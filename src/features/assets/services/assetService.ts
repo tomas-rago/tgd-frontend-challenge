@@ -5,7 +5,9 @@ export const getAssets = async (): Promise<Asset[]> => {
   // TODO: Implement GET request to fetch assets
   // Example endpoint: /api/assets
   // Use axiosInstance.get()
-  throw new Error("Not implemented");
+  const response = await axiosInstance.get<Asset[]>("/equipment");
+  return response.data;
+
 };
 
 export const updateAsset = async (id: string, data: UpdateAssetDto): Promise<Asset> => {
