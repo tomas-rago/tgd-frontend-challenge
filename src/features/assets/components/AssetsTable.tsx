@@ -73,7 +73,7 @@ const AssetsTable = () => {
             <StyledTableCell>Type</StyledTableCell>
             <StyledTableCell>Sector</StyledTableCell>
             <StyledTableCell>Location</StyledTableCell>
-            <StyledTableCell>State</StyledTableCell>
+            <StyledTableCell>Date</StyledTableCell>
             <StyledTableCell>Lubricant</StyledTableCell>
             <StyledTableCell>Lubricant Type</StyledTableCell>
             {/* Add more columns as needed */}
@@ -89,13 +89,7 @@ const AssetsTable = () => {
               <StyledTableCell>{row.type}</StyledTableCell>
               <StyledTableCell>{row.sector}</StyledTableCell>
               <StyledTableCell>{row.location}</StyledTableCell>
-              <StyledTableCell>
-                <Chip
-                  label={row.state ? 'Active' : 'Inactive'}
-                  color={row.state ? 'success' : 'default'}
-                  size="small"
-              />
-              </StyledTableCell>
+              <StyledTableCell>{row.date.split('T')[0]}</StyledTableCell>
               <StyledTableCell>{row.lubricant}</StyledTableCell>
               <StyledTableCell>{row.lubricantType}</StyledTableCell>
             
