@@ -32,6 +32,7 @@ const useAssetsData = () => {
     data,
     isLoading,
     error,
+    refetch: fetchAssets
   };
 };
 
