@@ -35,6 +35,7 @@ import type { Asset } from "../types/assetTypes";
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { getErrorMessage } from "../services/assetService";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -278,22 +279,31 @@ const EditDialog = ({ open, asset, onClose, onSave }: EditDialogProps) => {
             <TextField
               fullWidth
               label="Suggested Quantity"
-              type="number"
+              type="text"
               value={quantityValue}
-              onChange={(e) => handleQuantityChange(e.target.value)}
+              onChange={(e) => {
+                const numericValue = e.target.value.replace(/\D/g, ''); // Remove ALL non-digits
+                handleQuantityChange(numericValue);
+              }}
               onBlur={() => handleBlur('suggestedQuantity')}
               margin="normal"
               error={touched.suggestedQuantity && !!errors.suggestedQuantity}
               helperText={touched.suggestedQuantity && errors.suggestedQuantity}
-              inputProps={{ min: 1, max: asset.capacity || undefined }}
+              inputProps={{
+                inputMode: 'numeric', // Shows numeric keyboard on mobile
+                pattern: '[0-9]*'
+              }}
               InputProps={{
                 endAdornment: asset.measureUnit ? (
                   <InputAdornment position="end">
-                    {asset.measureUnit}
+                    <Typography variant="body2" color="text.secondary">
+                      {asset.measureUnit}
+                    </Typography>
                   </InputAdornment>
                 ) : null,
               }}
             />
+
             {asset.capacity > 0 && (
               <Typography variant="caption" color="text.secondary">
                 Max capacity: {asset.capacity} {asset.measureUnit}
@@ -575,23 +585,6 @@ const AssetsTable = () => {
   });
 
 
-
-  if (isLoading) {
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
-        <CircularProgress />
-      </Box>
-    );
-  }
-
-  if (error) {
-    return (
-      <Alert severity="error" sx={{ m: 2 }}>
-        Error loading equipment: {error.message}
-      </Alert>
-    );
-  }
-
   const handleUpdate = (asset: Asset) => {
     setSelectedAsset(asset);
     setDialogOpen(true);
@@ -614,7 +607,7 @@ const AssetsTable = () => {
     } catch (err) {
       setSnackbar({
         open: true,
-        message: `Update failed: ${err instanceof Error ? err.message : 'Unknown error'}`,
+        message: getErrorMessage(err),
         severity: 'error',
       });
       throw err;
@@ -639,6 +632,49 @@ const AssetsTable = () => {
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage
   );
+
+  if (isLoading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Alert severity="error" sx={{ m: 2 }}>
+        Error loading equipment: {error.message}
+      </Alert>
+    );
+  }
+
+  if (data.length === 0) {
+    return (
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          p: 6,
+          bgcolor: 'background.paper',
+          borderRadius: 1,
+          border: '1px solid',
+          borderColor: 'divider',
+        }}
+      >
+        <Typography variant="h6" color="text.secondary" gutterBottom>
+          No Equipment Found
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          There are no equipment records to display.
+        </Typography>
+      </Box>
+    );
+  }
+
+
 
   return (
     <>
