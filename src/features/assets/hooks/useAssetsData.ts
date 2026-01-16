@@ -1,4 +1,4 @@
-import { getAssets, updateAsset } from "../services/assetService";
+import { getAssets, updateAsset, getErrorMessage } from "../services/assetService";
 import type { Asset, UpdateAssetDto } from "../types/assetTypes";
 import { useState, useEffect } from "react";
 
@@ -14,9 +14,8 @@ const useAssetsData = () => {
         const assets : Asset[] = await getAssets();
         setData(assets);
       }
-      catch{
-        setError( new Error("Unexpected error when loading assets."))
-      }
+      catch (err){
+        setError(new Error(getErrorMessage(err)));      }
       finally{
         setIsLoading(false);
       }
@@ -26,8 +25,8 @@ const useAssetsData = () => {
     fetchAssets();
   }, []);
 
-  const update = async (id: string, updatedAsset: UpdateAssetDto) => {
-    await updateAsset(id, updatedAsset);
+  const update = async (updatedAsset: UpdateAssetDto) => {
+    await updateAsset(updatedAsset);
     await fetchAssets();
   };
 
