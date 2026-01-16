@@ -56,12 +56,12 @@ export interface UpdateAssetDto {
   capacity: number,
   measureUnit: string,
   oilAnalysis: boolean,
-  admissionDate: Date,
-  egressDate: Date,
+  admissionDate: string,
+  egressDate: string,
   state: boolean,
   lowReason: string,
   criticality: string,
   tagTGDBefore: string,
   suggestedQuantity: string,
-  date: Date
+  date: string
 }
