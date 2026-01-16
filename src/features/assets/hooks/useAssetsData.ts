@@ -1,5 +1,5 @@
-import { getAssets } from "../services/assetService";
-import type { Asset } from "../types/assetTypes";
+import { getAssets, updateAsset } from "../services/assetService";
+import type { Asset, UpdateAssetDto } from "../types/assetTypes";
 import { useState, useEffect } from "react";
 
 const useAssetsData = () => {
@@ -26,11 +26,17 @@ const useAssetsData = () => {
     fetchAssets();
   }, []);
 
+  const update = async (id: string, updatedAsset: UpdateAssetDto) => {
+    await updateAsset(id, updatedAsset);
+    await fetchAssets();
+  };
+
+
   return {
     data,
     isLoading,
     error,
-    refetch: fetchAssets
+    update
   };
 };
 
