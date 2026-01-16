@@ -418,7 +418,7 @@ const Row = ({ asset, onUpdate }: RowProps) => {
         </StyledTableCell>
       </StyledTableRow>
       <TableRow>
-        <StyledTableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
+        <StyledTableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={7}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 2, maxWidth: '100%', overflow: 'auto' }}>
 
@@ -428,11 +428,11 @@ const Row = ({ asset, onUpdate }: RowProps) => {
               <Grid container spacing={2} sx={{ mb: 3 }}>
                 <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <Typography variant="body2" color="text.secondary">Routes</Typography>
-                  <Typography variant="body1">{asset.routes.replace(/[\]["]/g, '') || 'N/A'}</Typography>
+                  <Typography variant="body1">{asset.routes?.replace(/[\]["]/g, '') || 'N/A'}</Typography>
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <Typography variant="body2" color="text.secondary">Supplies</Typography>
-                  <Typography variant="body1">{asset.supplies.replace(/[\]["]/g, '') || 'N/A'}</Typography>
+                  <Typography variant="body1">{asset.supplies?.replace(/[\]["]/g, '') || 'N/A'}</Typography>
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6, md: 4 }}>
                   <Typography variant="body2" color="text.secondary">Type</Typography>
@@ -597,7 +597,7 @@ const AssetsTable = () => {
 
   const handleSaveUpdate = async (updatedAsset: Asset) => {
     try {
-      await update(updatedAsset.id.toString(), updatedAsset);
+      await update(updatedAsset);
 
       setSnackbar({
         open: true,
@@ -610,7 +610,6 @@ const AssetsTable = () => {
         message: getErrorMessage(err),
         severity: 'error',
       });
-      throw err;
     }
   };
 
