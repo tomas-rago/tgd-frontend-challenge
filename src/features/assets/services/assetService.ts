@@ -46,7 +46,7 @@ export const getAssets = async (): Promise<Asset[]> => {
 
 };
 
-export const updateAsset = async (id: string, data: UpdateAssetDto): Promise<Asset> => {
+export const updateAsset = async (data: UpdateAssetDto): Promise<Asset> => {
   const response = await axiosInstance.put<Asset>('/equipment', data);
   return response.data;
 };

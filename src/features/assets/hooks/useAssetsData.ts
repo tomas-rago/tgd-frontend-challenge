@@ -25,8 +25,8 @@ const useAssetsData = () => {
     fetchAssets();
   }, []);
 
-  const update = async (id: string, updatedAsset: UpdateAssetDto) => {
-    await updateAsset(id, updatedAsset);
+  const update = async (updatedAsset: UpdateAssetDto) => {
+    await updateAsset(updatedAsset);
     await fetchAssets();
   };
 
